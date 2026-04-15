@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FourPillars — Your Ancient Chinese Destiny Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0c0a;
+    --paper: #f5f0e8;
+    --gold: #b8936a;
+    --gold-light: #d4aa82;
+    --gold-pale: #f0e4d0;
+    --rust: #8b3a2a;
+    --muted: #6b6560;
+    --border: rgba(184,147,106,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--gold); }
+
+  nav a.cta-nav {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 10px 22px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  nav a.cta-nav:hover { background: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 5.5vw, 76px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 420px;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 16px 36px;
+    transition: all 0.25s;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+  }
+
+  .price-note {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative chart */
+  .chart-container {
+    position: relative;
+    width: 340px;
+    height: 340px;
+  }
+
+  .chart-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+  }
+
+  .ring-1 { inset: 0; }
+  .ring-2 { inset: 30px; }
+  .ring-3 { inset: 60px; }
+  .ring-4 { inset: 90px; opacity: 0.5; }
+
+  .chart-center {
+    position: absolute;
+    inset: 110px;
+    background: var(--gold-pale);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid var(--gold);
+  }
+
+  .chart-center .zh {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .chart-center .en {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Pillar markers on ring */
+  .pillar-marker {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transform: translate(-50%, -50%);
+  }
+
+  .pillar-marker .zh-char {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .pillar-marker .en-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Position markers */
+  .m-top    { top: 15px;   left: 50%; }
+  .m-right  { top: 50%;    right: 0px; transform: translate(50%, -50%); }
+  .m-bottom { bottom: 15px; left: 50%; }
+  .m-left   { top: 50%;    left: 0px; transform: translate(-50%, -50%); }
+
+  /* Element dots */
+  .element-dots {
+    position: absolute;
+    inset: -20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .e-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .e-wood  { background: #5a7a45; top: 20%;  left: 15%; }
+  .e-fire  { background: var(--rust); top: 20%;  right: 15%; }
+  .e-earth { background: var(--gold); bottom: 30%; left: 50%; }
+  .e-metal { background: #7a8a9a; bottom: 20%; left: 20%; }
+  .e-water { background: #3a5a7a; bottom: 20%; right: 20%; }
+
+  /* Decorative background element */
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 280px;
+    font-weight: 300;
+    color: rgba(184,147,106,0.06);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+
+  /* SOCIAL PROOF STRIP */
+  .proof-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 80px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    overflow-x: auto;
+  }
+
+  .proof-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .proof-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+  }
+
+  .proof-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .proof-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 100px 80px; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* WHAT IS BAZI */
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .what-body {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  .what-body p { margin-bottom: 20px; }
+
+  .what-body p:last-child { margin-bottom: 0; }
+
+  .what-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .pillars-visual {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .pillar-card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 24px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s;
+  }
+
+  .pillar-card:hover { border-color: var(--gold); }
+
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+
+  .pillar-card:hover::before { transform: scaleX(1); }
+
+  .pillar-zh {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .pillar-en {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .pillar-desc {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* WHAT YOU DISCOVER */
+  .discover { background: var(--ink); color: var(--paper); }
+
+  .discover .section-eyebrow { color: var(--gold-light); }
+  .discover .section-eyebrow::before { background: var(--gold-light); }
+  .discover .section-title { color: var(--paper); }
+
+  .discover-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-top: 60px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .discover-item {
+    background: var(--ink);
+    padding: 48px 40px;
+    transition: background 0.25s;
+  }
+
+  .discover-item:hover { background: #1a1714; }
+
+  .discover-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(184,147,106,0.3);
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  .discover-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .discover-item p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.7;
+  }
+
+  /* HOW IT WORKS */
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-top: 60px;
+    position: relative;
+  }
+
+  .how-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(33.33% - 30px);
+    right: calc(33.33% - 30px);
+    height: 1px;
+    background: var(--border);
+  }
+
+  .how-step { position: relative; }
+
+  .step-circle {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    background: var(--paper);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-circle span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  .how-step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+
+  .how-step p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--gold-pale); }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .testimonial-card {
+    background: white;
+    padding: 36px;
+    border: 1px solid rgba(184,147,106,0.2);
+    position: relative;
+  }
+
+  .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    color: var(--gold-pale);
+    position: absolute;
+    top: 16px;
+    left: 28px;
+    line-height: 1;
+    font-weight: 300;
+    pointer-events: none;
+  }
+
+  .testimonial-card blockquote {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .author-info .name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .author-info .meta {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* PRICING / CTA */
+  .pricing {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing::before {
+    content: '命';
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 600px;
+    font-weight: 300;
+    color: rgba(184,147,106,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .pricing-card {
+    display: inline-block;
+    background: white;
+    border: 1px solid var(--border);
+    padding: 60px 80px;
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    width: 100%;
+    margin: 60px auto 0;
+  }
+
+  .pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    right: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .price sup {
+    font-size: 28px;
+    vertical-align: super;
+    color: var(--gold);
+  }
+
+  .price-label {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .includes {
+    list-style: none;
+    margin-bottom: 40px;
+    text-align: left;
+  }
+
+  .includes li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .includes li::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .includes li:last-child { border-bottom: none; }
+
+  .btn-large {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.25s;
+  }
+
+  .btn-large:hover { background: var(--gold); }
+
+  .guarantee {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-weight: 300;
+  }
+
+  /* FAQ */
+  .faq { background: var(--gold-pale); }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 60px;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+
+  .faq-item {
+    background: var(--gold-pale);
+    padding: 36px 40px;
+  }
+
+  .faq-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .faq-item p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.4);
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: rgba(245,240,232,0.6);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  .hero-left > * {
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .eyebrow { animation-delay: 0.1s; }
+  .hero-title { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .hero-cta { animation-delay: 0.4s; }
+
+  .chart-ring { animation: rotateSlow 60s linear infinite; }
+  .ring-2 { animation-direction: reverse; animation-duration: 45s; }
+  .ring-3 { animation-duration: 80s; }
+
+  .e-dot { animation: pulse 3s ease-in-out infinite; }
+  .e-wood  { animation-delay: 0s; }
+  .e-fire  { animation-delay: 0.6s; }
+  .e-earth { animation-delay: 1.2s; }
+  .e-metal { animation-delay: 1.8s; }
+  .e-water { animation-delay: 2.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 60px 24px 40px; }
+    .hero-left::after { display: none; }
+    .hero-right { display: none; }
+    section { padding: 60px 24px; }
+    .proof-strip { padding: 20px 24px; gap: 32px; }
+    .what-grid { grid-template-columns: 1fr; gap: 40px; }
+    .pillars-visual { grid-template-columns: repeat(2, 1fr); }
+    .discover-grid { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr; }
+    .how-steps::before { display: none; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 40px 24px; }
+    .faq-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Four<span>Pillars</span></a>
+  <a href="#get-reading" class="cta-nav">Get My Reading — $19</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">5,000 years of Eastern wisdom</div>
+    <h1 class="hero-title">
+      Your destiny,<br>
+      <em>written in<br>the stars</em><br>
+      you were born under
+    </h1>
+    <p class="hero-sub">
+      BaZi — the ancient Chinese system used by emperors and scholars for millennia — reveals the precise blueprint of your personality, timing, and life path. Now decoded by AI, in English.
+    </p>
+    <div class="hero-cta">
+      <a href="#get-reading" class="btn-primary">Decode My Destiny</a>
+      <span class="price-note">$19 · Delivered in 60 seconds</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-bg-text">命</div>
+    <div class="chart-container">
+      <div class="chart-ring ring-1"></div>
+      <div class="chart-ring ring-2"></div>
+      <div class="chart-ring ring-3"></div>
+      <div class="chart-ring ring-4"></div>
+
+      <div class="pillar-marker m-top">
+        <span class="zh-char">年</span>
+        <span class="en-label">Year</span>
+      </div>
+      <div class="pillar-marker m-right">
+        <span class="zh-char">月</span>
+        <span class="en-label">Month</span>
+      </div>
+      <div class="pillar-marker m-bottom">
+        <span class="zh-char">日</span>
+        <span class="en-label">Day</span>
+      </div>
+      <div class="pillar-marker m-left">
+        <span class="zh-char">时</span>
+        <span class="en-label">Hour</span>
+      </div>
+
+      <div class="e-dot e-wood"></div>
+      <div class="e-dot e-fire"></div>
+      <div class="e-dot e-earth"></div>
+      <div class="e-dot e-metal"></div>
+      <div class="e-dot e-water"></div>
+
+      <div class="chart-center">
+        <span class="zh">命</span>
+        <span class="en">destiny</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-item">
+    <div class="proof-num">5,000+</div>
+    <div class="proof-label">Years of history</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-item">
+    <div class="proof-num">2,000</div>
+    <div class="proof-label">Words, personalized</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-item">
+    <div class="proof-num">60s</div>
+    <div class="proof-label">Delivery time</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-item">
+    <div class="proof-num">4</div>
+    <div class="proof-label">Pillars of destiny</div>
+  </div>
+</div>
+
+<!-- WHAT IS BAZI -->
+<section>
+  <div class="section-eyebrow">What is BaZi</div>
+  <h2 class="section-title">The personality system that<br><em>predates psychology</em> by millennia</h2>
+  <div class="what-grid">
+    <div class="what-body">
+      <p>Long before MBTI, before the Enneagram, before Jungian archetypes — ancient Chinese scholars developed a system for understanding human nature so precise that it was used to counsel emperors and select government officials for over a thousand years.</p>
+      <p>BaZi, or the <strong>Four Pillars of Destiny</strong>, maps your birth date and exact time into a matrix of cosmic energies. Unlike Western astrology which uses planetary positions, BaZi works with the fundamental forces of nature — the Five Elements — to reveal not just who you are, but <strong>when your life will peak, when to act, and when to wait.</strong></p>
+      <p>What makes it extraordinary is its precision. Your birth year, month, day, and exact hour each contribute one "Pillar" — creating a unique combination that has never existed before and will never exist again.</p>
+    </div>
+    <div class="pillars-visual">
+      <div class="pillar-card">
+        <span class="pillar-zh">年</span>
+        <span class="pillar-en">Year Pillar</span>
+        <div class="pillar-desc">Your ancestral energy and the world you were born into</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-zh">月</span>
+        <span class="pillar-en">Month Pillar</span>
+        <div class="pillar-desc">Your career potential and the environment you thrive in</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-zh">日</span>
+        <span class="pillar-en">Day Pillar</span>
+        <div class="pillar-desc">Your core self — the essence of who you truly are</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-zh">时</span>
+        <span class="pillar-en">Hour Pillar</span>
+        <div class="pillar-desc">Your inner world, desires, and legacy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU DISCOVER -->
+<section class="discover">
+  <div class="section-eyebrow">What you'll discover</div>
+  <h2 class="section-title">Six dimensions of your<br><em>complete destiny blueprint</em></h2>
+  <div class="discover-grid">
+    <div class="discover-item">
+      <div class="discover-num">01</div>
+      <h3>Your Core Element & Archetype</h3>
+      <p>Discover your Day Master — the elemental energy at the heart of your personality. Are you Yang Metal (the Sword), Yin Water (the Dew), Yang Fire (the Sun)?</p>
+    </div>
+    <div class="discover-item">
+      <div class="discover-num">02</div>
+      <h3>Personality Strengths & Shadow</h3>
+      <p>A deeply honest account of your natural gifts, blind spots, and the patterns that repeat in your relationships and work — without flattery.</p>
+    </div>
+    <div class="discover-item">
+      <div class="discover-num">03</div>
+      <h3>Career Path & Wealth Timing</h3>
+      <p>Which fields are energetically aligned with your chart. When your peak earning years are. How to position yourself to attract opportunity.</p>
+    </div>
+    <div class="discover-item">
+      <div class="discover-num">04</div>
+      <h3>Relationship Patterns</h3>
+      <p>How you love, what you need from a partner, what you unconsciously attract — and what blocks lasting connection.</p>
+    </div>
+    <div class="discover-item">
+      <div class="discover-num">05</div>
+      <h3>Your Current 10-Year Cycle</h3>
+      <p>BaZi operates in 10-year cycles of luck. Understand the dominant energy of your current decade and what it means for every area of your life.</p>
+    </div>
+    <div class="discover-item">
+      <div class="discover-num">06</div>
+      <h3>2025–2026 Annual Forecast</h3>
+      <p>What the energies of the current year activate in your specific chart — opportunities, cautions, and the optimal timing for major decisions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="section-eyebrow">How it works</div>
+  <h2 class="section-title">Ancient wisdom,<br><em>modern delivery</em></h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-circle"><span>1</span></div>
+      <h3>Enter your birth details</h3>
+      <p>Your birth date, exact time, and gender. The more precise your birth time, the more accurate your Hour Pillar — even 15 minutes can change the reading.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-circle"><span>2</span></div>
+      <h3>AI analyzes your Four Pillars</h3>
+      <p>Our system calculates your precise BaZi chart using classical algorithms, then interprets it through a deep knowledge base built from centuries of Chinese metaphysical texts.</p>
+    </div>
+    <div class="how-step">
+      <div class="step-circle"><span>3</span></div>
+      <h3>Receive your personal report</h3>
+      <p>A 2,000-word personalized destiny report arrives in your inbox within 60 seconds. Written in clear English — no jargon, no generic horoscope language.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-eyebrow">What readers say</div>
+  <h2 class="section-title">Reactions from people who<br><em>didn't expect to be moved</em></h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <blockquote>I've done MBTI, Human Design, the Enneagram. Nothing came close to the accuracy of this. It described a pattern in my relationships I've never been able to articulate — and gave me language for it.</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">S</div>
+        <div class="author-info">
+          <div class="name">Sarah K.</div>
+          <div class="meta">Therapist · Portland, OR</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <blockquote>I'm a complete skeptic. I ordered this thinking it would be vague astrology nonsense. The career section described my exact professional frustration and what I'm actually suited for. I've read it three times.</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">M</div>
+        <div class="author-info">
+          <div class="name">Marcus T.</div>
+          <div class="meta">Software Engineer · Austin, TX</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <blockquote>The 10-year cycle section stopped me cold. It described the last seven years of my life — including a very specific kind of challenge — without me telling it anything other than my birthday.</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">L</div>
+        <div class="author-info">
+          <div class="name">Lena W.</div>
+          <div class="meta">Artist · London, UK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="get-reading">
+  <div class="section-eyebrow">Get your reading</div>
+  <h2 class="section-title">One reading.<br><em>A lifetime of context.</em></h2>
+  <div class="pricing-card">
+    <div class="price"><sup>$</sup>19</div>
+    <div class="price-label">One-time · No subscription</div>
+    <ul class="includes">
+      <li>Complete Four Pillars chart analysis</li>
+      <li>Day Master personality deep-dive</li>
+      <li>Career, wealth & relationship patterns</li>
+      <li>Current 10-year destiny cycle interpretation</li>
+      <li>2025–2026 annual forecast</li>
+      <li>~2,000 words, delivered to your inbox in 60 seconds</li>
+    </ul>
+    <a href="#order-form" class="btn-large">Decode My Destiny Now</a>
+    <p class="guarantee">If your report feels generic or unhelpful, email us for a full refund.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="section-eyebrow">Questions</div>
+  <h2 class="section-title">Things people<br><em>wonder before ordering</em></h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h3>Is this like Western astrology?</h3>
+      <p>BaZi and Western astrology share the use of birth data, but they work differently. Astrology maps planetary positions; BaZi works with the natural cycles of Five Elements — Wood, Fire, Earth, Metal, Water. Many people find BaZi significantly more precise for personality analysis.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What if I don't know my exact birth time?</h3>
+      <p>Your reading will still be valuable — the Year, Month, and Day Pillars remain accurate. The Hour Pillar (which reveals your inner world and desires) requires an exact birth time. Check your birth certificate, or ask a parent — it's worth finding.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How is this different from free BaZi tools?</h3>
+      <p>Free tools give you raw chart data — a list of elements and terms that mean nothing without interpretation. Our reading translates your chart into clear, contextual English prose, integrating all the pillars into a coherent story of your life.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is this a subscription?</h3>
+      <p>No. $19 is a one-time payment. You receive your report by email within 60 seconds. No recurring charges, no account required.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What if I'm not satisfied?</h3>
+      <p>If your report feels generic, inaccurate, or unhelpful — email us and we'll refund you in full. No questions asked. We've built this to be genuinely useful, not just entertaining.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is my birth information kept private?</h3>
+      <p>Yes. Your birth details are used solely to generate your report and are never shared, sold, or stored beyond what's needed for delivery. We take this seriously.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Four<span>Pillars</span></div>
+  <div>© 2025 FourPillars · All rights reserved</div>
+  <div>privacy · terms · support</div>
+</footer>
+
+</body>
+</html>
